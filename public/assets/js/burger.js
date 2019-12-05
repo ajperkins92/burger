@@ -1,20 +1,19 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function () {
 
 
     $(function () {
         $(".change-devoured").on("click", function (event) {
             var id = $(this).data("id");
-            // var newDevoured = $(this).data("newDevoured");
+            var newDevoured = $(this).data("newDevoured");
 
-            // var newDevouredState = {
-            //     devoured: newDevoured
-            // };
+            var newDevouredState = {
+                devoured: newDevoured
+            };
 
             // Send the PUT request.
-            $.ajax("/api/burgers/" + id, {
+            $.ajax("/burgers/" + id, {
                 type: "PUT",
-                // data: newDevouredState
+                data: newDevouredState
             }).then(
                 function () {
                     location.reload();
@@ -32,7 +31,7 @@ $(function () {
             };
 
             // Send the POST request.
-            $.ajax("/api/burgers", {
+            $.ajax("/burgers", {
                 type: "POST",
                 data: newBurger
             }).then(
@@ -42,4 +41,3 @@ $(function () {
             );
         });
     });
-});

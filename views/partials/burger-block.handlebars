@@ -1,8 +1,6 @@
 <li>
-	{{id}}
-	{{burger_name}}
-
-	<button class="change-devoured" data-id="{{id}}" data-devoured="{{devoured}}">
-		{{#if devoured}}DEVOUR ME{{/if}}
-	</button>
+	<form action="burgers/delete/{{id}}" method="DELETE">
+		<input type="hidden" name="devoured" value="true">
+		<button class="btn btn-default btn-lg" data-id="{{this.id}}"><i class="fa fa-trash"></i> Delete</button>
+	</form>
 </li>
