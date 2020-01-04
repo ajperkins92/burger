@@ -2,7 +2,7 @@
 
 
     $(function () {
-        $(".change-devoured").on("click", function (event) {
+        $(".devour-form").on("click", function (event) {
             var id = $(this).data("id");
             var newDevoured = $(this).data("newDevoured");
 
@@ -11,11 +11,12 @@
             };
 
             // Send the PUT request.
-            $.ajax("/burgers/" + id, {
+            $.ajax("/burgers/update/:id" + id, {
                 type: "PUT",
                 data: newDevouredState
             }).then(
                 function () {
+                    console.log("Changed to devoured!")
                     location.reload();
                 }
             );
@@ -31,11 +32,12 @@
             };
 
             // Send the POST request.
-            $.ajax("/burgers", {
+            $.ajax("/burgers/create", {
                 type: "POST",
                 data: newBurger
             }).then(
                 function () {
+                    console.log("Created new burger!")
                     location.reload();
                 }
             );
