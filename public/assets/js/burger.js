@@ -1,45 +1,47 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
+$(function () {
+    $(".create-form").on("submit", function (event) {
+        event.preventDefault();
 
+        var newBurger = {
+            burger_name: $("#newburger")
+                .val()
+                .trim(),
+            devoured: 0
+        };
 
-    $(function () {
-        $(".devour-form").on("click", function (event) {
-            var id = $(this).data("id");
-            var newDevoured = $(this).data("newDevoured");
-
-            var newDevouredState = {
-                devoured: newDevoured
-            };
-
-            // Send the PUT request.
-            $.ajax("/burgers/update/:id" + id, {
-                type: "PUT",
-                data: newDevouredState
-            }).then(
-                function () {
-                    console.log("Changed to devoured!")
-                    location.reload();
-                }
-            );
-        });
-
-        $(".create-form").on("submit", function (event) {
-            // Make sure to preventDefault on a submit event.
-            event.preventDefault();
-            console.log("New burger created");
-
-            var newBurger = {
-                name: $("#newBurger").val().trim(),
-            };
-
-            // Send the POST request.
-            $.ajax("/burgers/create", {
-                type: "POST",
-                data: newBurger
-            }).then(
-                function () {
-                    console.log("Created new burger!")
-                    location.reload();
-                }
-            );
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newBurger
+        }).then(function () {
+            console.log("Added new burger");
+            location.reload();
         });
     });
+
+    $(".eatburger").on("click", function (event) {
+        event.preventDefault();
+
+        var id = $(this).data("id");
+        var devouredState = {
+            devoured: 1
+        };
+
+        $.ajax("api/burgers/" + id, {
+            type: "PUT",
+            data: devouredState
+        }).then(function () {
+            console.log("Burger devoured");
+            location.reload();
+        });
+    });
+
+    $(".trashburger").on("click", function (event) {
+        event.preventDefault();
+
+        var id = $(this).data("id");
+        $.ajax({
+            type: "DELETE",
+            url: "/api/burgers/" + id
+        }).then(location.reload());
+    });
+});

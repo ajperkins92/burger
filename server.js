@@ -1,6 +1,7 @@
 // Setting Express variables
 var express = require("express");
-var PORT = process.env.PORT || 8080;
+var bodyParser = require("body-parser")
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 var path = require("path");
@@ -12,8 +13,8 @@ require('dotenv').config();
 app.use(express.static("public"));
 
 // Parse application body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -23,7 +24,6 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/burgers_controller");
-
 app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
