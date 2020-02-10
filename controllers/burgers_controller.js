@@ -14,14 +14,14 @@ router.get("/burgers", function (req, res) {
 
 
 router.post("/burgers/create/", function (req, res) {
-  burger.create(req.body.burger_name, function(result) {
+  burger.create(req.body.burger_name, function (result) {
     console.log(result);
     res.redirect("/");
   });
 });
 
 router.put("/burgers/:id", function (req, res) {
-  burger.update(req.params.id, function(result) {
+  burger.update(req.params.id, function (result) {
     console.log(result);
     res.sendStatus(200);
   });
