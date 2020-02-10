@@ -1,7 +1,7 @@
 body {
     width: 99%;
     height: 900px;
-    background-color: #fc6;
+    background-color: lightblue;
   }
   
   #top-bar {
@@ -64,6 +64,6 @@ body {
   }
   
   h1 {
-    color: #f30;
+    color: black;
   }
   
