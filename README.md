@@ -6,4 +6,4 @@ The app is an example of using the MVC Paradigm with a homemade ORM to manipulat
 This app is also the first use of Express Handlebars we've had. 
 
 ## Screenshot
-!["App Screenshot"](/assets/img/appscreenshot.PNG)
+![App Screenshot](/public/assets/img/appscreenshot.PNG)
